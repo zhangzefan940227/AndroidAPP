@@ -1,4 +1,4 @@
-package com.zzfan.main;
+package com.zzfan.Activity;
 
 import org.junit.Test;
 
