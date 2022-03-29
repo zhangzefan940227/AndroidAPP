@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.zzfan.Class.UserService;
+import com.zzfan.SQLite.DatabaseHelper;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        dbHelper.getWritableDatabase();
+        initViews();
     }
 
     @Override
@@ -44,7 +48,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void initViews() {
         mLoginButton = findViewById(R.id.login_btn);
         mRegisterButton = findViewById(R.id.register_btn);
-
         mUsernameEdit = findViewById(R.id.login_input_username);
         mPwdEdit = findViewById(R.id.login_input_password);
 
@@ -61,7 +64,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 boolean flag = uService.login(name, pwd);
                 if (flag) {
                     Log.i(TAG, "登录成功");
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();
                 } else {
@@ -70,7 +73,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
                 break;
             case R.id.register_btn:
-
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
                 break;
             case R.id.login_input_username:
 

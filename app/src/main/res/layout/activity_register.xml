@@ -5,17 +5,17 @@
     android:background="@mipmap/sea" >
 
     <RelativeLayout
-        android:id="@+id/login_layout"
+        android:id="@+id/register_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
         android:gravity="center">
 
-        <!--登录界面图像-->
+        <!--注册界面-->
         <ImageView
-            android:id="@+id/user_icon"
+            android:id="@+id/user_reg_icon"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_alignParentTop="true"
@@ -28,16 +28,16 @@
 
         <!--用户名行布局-->
         <FrameLayout
-            android:id="@+id/username_layout"
+            android:id="@+id/uname_reg_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/user_icon"
+            android:layout_below="@+id/user_reg_icon"
             android:layout_marginTop="5dp"
             android:gravity="center">
 
             <!--用户名编辑框-->
             <EditText
-                android:id="@+id/login_input_username"
+                android:id="@+id/register_uname"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="5dp"
@@ -78,17 +78,16 @@
             android:id="@+id/passwd_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/username_layout"
+            android:layout_below="@id/uname_reg_layout"
             android:layout_marginTop="0dp"
             android:gravity="center">
 
             <!--密码编辑框-->
             <EditText
-                android:id="@+id/login_input_password"
+                android:id="@+id/register_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="5dp"
-                android:layout_weight="1"
                 android:background="@drawable/edittext_selector"
                 android:hint="密码"
                 android:inputType="textPassword"
@@ -108,6 +107,7 @@
                 android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="20dp"
                 android:background="@mipmap/passwd" />
+
 
             <!--隐藏显示密码按钮-->
             <Button
@@ -132,77 +132,108 @@
                 android:visibility="invisible" />
         </FrameLayout>
 
-        <!--记住账号和密码的勾选框-->
-        <CheckBox
-            android:id="@+id/remember_pwd"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_below="@+id/passwd_layout"
-            android:layout_alignLeft="@+id/passwd_layout"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:button="@null"
-            android:drawableLeft="@mipmap/box_checked"
-            android:drawablePadding="5dp"
-            android:gravity="left|center_vertical"
-
-            android:paddingLeft="0dp"
-            android:text="记住账号"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <!--忘记密码的按钮-->
-        <Button
-            android:id="@+id/forgive_pwd"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/passwd_layout2"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/passwd_layout"
-            android:layout_alignRight="@+id/passwd_layout"
-            android:layout_marginRight="5dp"
-            android:background="#00000000"
-            android:text="忘记密码?"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:layout_below="@id/passwd_layout"
+            android:layout_marginTop="0dp"
+            android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/passwd_layout"
-            android:orientation="horizontal">
-            <!--登录按钮-->
-            <Button
-                android:id="@+id/login_btn"
-                android:layout_width="0dp"
+            <!--密码编辑框-->
+            <EditText
+                android:id="@+id/register_pwd2"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="60dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_selector"
-                android:gravity="center"
-                android:text="登录"
-                android:textAlignment="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_selector"
+                android:hint="确认密码"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:minHeight="40dp"
+                android:paddingStart="40dp"
+                android:singleLine="true"
                 android:textColor="@android:color/white"
-                android:textSize="22sp" />
+                android:textColorHint="#95A1AA"
+                android:textCursorDrawable="@drawable/edittext_cursor" />
 
+            <!--密码图标-->
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="21dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/passwd" />
+
+
+            <!--隐藏显示密码按钮-->
             <Button
-                android:id="@+id/register_btn"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="60dp"
+                android:id="@+id/passwd_eye_btn2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
+                android:background="@mipmap/eye"
+                android:visibility="invisible" />
 
-                android:background="@drawable/button_selector"
-                android:gravity="center"
-                android:text="注册"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="22sp" />
+            <!--隐藏删除密码按钮-->
+            <Button
+                android:id="@+id/del_passwd_btn2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="45dp"
+                android:background="@mipmap/delete"
+                android:visibility="invisible" />
+        </FrameLayout>
 
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/pwd_check_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwd_layout2"
+            android:text="密码不一致,请重新输入密码"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/red"
+            android:textSize="13dp"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/pwd_check2_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwd_layout2"
+            android:text="用户名已存在,请重新输入"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/red"
+            android:textSize="13dp"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/pwd_check3_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwd_layout2"
+            android:text="请输入用户名或密码"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/red"
+            android:textSize="13dp"
+            android:visibility="invisible"/>
+        <Button
+            android:id="@+id/register_btn2"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/pwd_check_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_selector"
+            android:text="注册"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
 
     </RelativeLayout>
 </RelativeLayout>

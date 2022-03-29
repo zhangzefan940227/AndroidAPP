@@ -31,4 +31,31 @@ public class UserService {
         }
         return false;
     }
+    public ArrayList<String> getAll() {
+        SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+        //查询获得游标
+        Cursor cursor = sdb.query ("user",null,null,null,null,null,null);
+        //判断游标是否为空
+        if(cursor.moveToFirst()) {
+            //遍历游标
+            do{
+                //获得用户名
+                usernameList.add(cursor.getString(1));
+            }while(cursor.moveToNext());
+            /*
+            for(int i=0;i<cursor.getCount();i++){
+                cursor.move(i);
+                //获得ID
+                //useridList.add(cursor.getInt(0));
+                //获得用户名
+                usernameList.add(cursor.getString(1));
+                //获得密码
+                //userpasswordlList.add(cursor.getString(2));
+            }
+            */
+            cursor.close();
+        }
+        return usernameList;
+
+    }
 }
