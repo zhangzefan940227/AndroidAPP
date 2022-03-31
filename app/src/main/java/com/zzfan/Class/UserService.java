@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class UserService {
+    private static final String TAG = "UserService";
 
     private ArrayList<String> usernameList = new ArrayList<>();
     private DatabaseHelper dbHelper;
@@ -28,8 +29,9 @@ public class UserService {
         if (cursor.moveToFirst()) {
             cursor.close();
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
     public ArrayList<String> getAll() {
         SQLiteDatabase sdb=dbHelper.getReadableDatabase();
@@ -58,4 +60,15 @@ public class UserService {
         return usernameList;
 
     }
+
+    //注册用
+    public boolean register(User user){
+        //用getReadable和getWriteable都可以创建或者打开一个数据库并返回一个可对数据库进行读写操作的对象，当数据库满R可以只读，W会报错
+        SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+        String sql="insert into user(username,password) values(?,?)";
+        Object obj[]={user.getUsername(),user.getPassword()};
+        sdb.execSQL(sql, obj);
+        return true;
+    }
+
 }

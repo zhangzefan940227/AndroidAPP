@@ -19,12 +19,15 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".RegisterActivity"
+            android:launchMode="singleTask"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleInstance"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

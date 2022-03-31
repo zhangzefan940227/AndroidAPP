@@ -50,6 +50,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mRegisterButton = findViewById(R.id.register_btn);
         mUsernameEdit = findViewById(R.id.login_input_username);
         mPwdEdit = findViewById(R.id.login_input_password);
+        uService = new UserService(LoginActivity.this);
 
         mLoginButton.setOnClickListener(this);
         mRegisterButton.setOnClickListener(this);
@@ -59,9 +60,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn:
+                boolean flag = false;
                 String name = mUsernameEdit.getText().toString();
                 String pwd = mPwdEdit.getText().toString();
-                boolean flag = uService.login(name, pwd);
+                if (name.isEmpty() || pwd.isEmpty()) {
+                    Toast.makeText(this, "账号或密码为空, 请重新输入", Toast.LENGTH_LONG).show();
+                } else {
+                    flag = uService.login(name, pwd);
+                }
                 if (flag) {
                     Log.i(TAG, "登录成功");
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

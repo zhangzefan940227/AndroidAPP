@@ -3,6 +3,7 @@ package com.zzfan.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.zzfan.Class.User;
 import com.zzfan.Class.UserService;
 import com.zzfan.SQLite.DatabaseHelper;
 
@@ -62,6 +65,15 @@ public class RegisterActivity extends Activity {
                     mEmptyTv.setVisibility(View.INVISIBLE);
                     mPwdDiffTv.setVisibility(View.INVISIBLE);
                     mUnameExistTv.setVisibility(View.VISIBLE);
+                } else {
+                    UserService userService = new UserService(RegisterActivity.this);
+                    User user = new User();
+                    user.setUsername(mName);
+                    user.setPassword(mPwd);
+                    uService.register(user);
+                    Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -72,11 +84,14 @@ public class RegisterActivity extends Activity {
         DatabaseHelper dbHelper = new DatabaseHelper(RegisterActivity.this);
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
         ArrayList<String> unameList = uService.getAll();
+        if (unameList.size() == 0) {
+            return false;
+        }
         for (int i = 0; i < unameList.size(); i++) {
             if (unameList.get(i).equals(name)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
